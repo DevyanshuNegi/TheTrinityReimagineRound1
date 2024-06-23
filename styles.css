@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+}
+
+* {
+  padding: 0;
+  margin:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.header {
+  position: relative;
+  background-color: #F3F3F3;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .5rem;
+  gap: 1rem;
+  font-size: large;
+}
+
+.header-buttons {
+  /* position: relative; */
+  /* background-color: #F3F3F3; */
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: .5rem;
+  gap: 1rem;
+  font-size: large;
+}
+
+#logo {
+  /* position: absolute; */
+top: 0px;
+left: 0px;
+}
+
+.link {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: #777;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+}
+
+.dropdown.active > .link,
+.link:hover {
+  color: black;
+  font-weight: 600;
+}
+/* for underline animation */
+.underline-btn {
+  position: relative; /* Needed for positioning the underline */
+  border: none;
+  cursor: pointer; /* Indicate hover interaction */
+}
+
+.underline-btn::after {
+  content: ""; /* Empty content for the underline */
+  position: absolute;
+  bottom: 0; /* Position underline at the bottom */
+  left: 0; /* Start from the left side */
+  width: 0; /* Initially no width */
+  height: 2px; /* Set underline height */
+  background-color: #000; /* Underline color */
+  transition: width 0.3s ease-in-out; /* Animation properties */
+}
+
+.underline-btn:hover::after {
+  width: 100%; /* Expand underline on hover */
+  transition: width 0.3s ease-in-out; /* Animation properties */
+}
+
+
+
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + .25rem);
+  width: 100vw;
+  background-color: white;
+  padding: .75rem;
+  border-radius: .25rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  font-size: medium;
+}
+
+.dropdown.active > .link + .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.information-flex {
+  display: flex;
+  /* grid-template-columns: repeat(2, max-content); */
+  justify-content: center;
+  gap: 2rem;
+}
+
+.dropdown-links {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.login-form > input {
+  margin-bottom: .5rem;
+}
+
+/* Header and nav bar  end  */
