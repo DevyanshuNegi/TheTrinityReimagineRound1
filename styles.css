@@ -117,4 +117,33 @@ left: 0px;
   margin-bottom: .5rem;
 }
 
+.input-hidden {
+  display: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  transition: all 0.5s ease-in-out !important; /* Adjust duration and easing as needed */
+}
+.input-visible {
+  display: flex !important; /* Or inline-flex if needed */
+  opacity: 1 !important;
+  width: 100% !important; /* Adjust width based on your element */
+
+}
+
 /* Header and nav bar  end  */
+
+
+.video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: -100;
+}
+
+#container {
+  height: 500vh;
+  /* scroll-behavior:inherit; */
+}

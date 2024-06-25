@@ -1,5 +1,4 @@
-// for dropdown menus
-
+// Dropdown menus
 document.addEventListener("mouseover", handleDropdown);
 document.addEventListener("mouseout", handleDropdown);  // Added mouseout listener
 
@@ -18,7 +17,7 @@ function handleDropdown(event) {
         } else if (event.type === "mouseout" && !currentDropdown.contains(event.relatedTarget)) {
             currentDropdown.closeTimeout = setTimeout(() => {
                 currentDropdown.classList.remove("active");
-            }, 100); // Add a slight delay (adjust as needed)
+            }, 200); // Add a slight delay (adjust as needed)
         }
     }
 }
@@ -30,6 +29,7 @@ function handleDropdown(event) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const logo = document.getElementById("logo");
+    // logo.style.zIndex = 1000; // Ensure the logo is on top of other elements
 
     // Get the original position of the logo (assuming it's initially hidden)
     const originalPosition = {
@@ -74,3 +74,114 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // */
+
+ // Search icon animation 
+ // TODO: Add the search icon animation
+var search = document.getElementById("search-icon");
+var searchInput = document.getElementById("search-input")
+search.addEventListener('click', (event) => {
+    searchInput.classList.replace("input-hidden", "input-visible")
+    console.log("class added")
+})
+
+
+
+// Scroll control video background
+
+console.clear();
+/* The encoding is super important here to enable frame-by-frame scrubbing. */
+
+// ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p output.mp4
+// ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -vf scale=960:-1 -movflags faststart -vcodec libx264 -crf 20 -g 1 -pix_fmt yuv420p output_960.mp4
+
+const video = document.querySelector(".video-background");
+let src = video.currentSrc || video.src;
+// console.log(video, src);
+
+/* Make sure the video is 'activated' on iOS */
+function once(el, event, fn, opts) {
+    var onceFn = function (e) {
+        el.removeEventListener(event, onceFn);
+        fn.apply(this, arguments);
+    };
+    el.addEventListener(event, onceFn, opts);
+    return onceFn;
+}
+
+once(document.documentElement, "touchstart", function (e) {
+    video.play();
+    video.pause();
+});
+
+/* ---------------------------------- */
+/* Scroll Control! */
+
+gsap.registerPlugin(ScrollTrigger);
+
+let tl = gsap.timeline({
+    defaults: { duration: 1 },
+    scrollTrigger: {
+        trigger: "#container",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true
+    }
+});
+
+once(video, "loadedmetadata", () => {
+    tl.fromTo(
+        video,
+        {
+            currentTime: 0
+        },
+        {
+            currentTime: video.duration || 1
+        }
+    );
+});
+
+/* When first coded, the Blobbing was important to ensure the browser wasn't dropping previously played segments, but it doesn't seem to be a problem now. Possibly based on memory availability? */
+setTimeout(function () {
+    if (window["fetch"]) {
+        fetch(src)
+            .then((response) => response.blob())
+            .then((response) => {
+                var blobURL = URL.createObjectURL(response);
+
+                var t = video.currentTime;
+                once(document.documentElement, "touchstart", function (e) {
+                    video.play();
+                    video.pause();
+                });
+
+                video.setAttribute("src", blobURL);
+                video.currentTime = t + 0.005;
+            });
+    }
+}, 1000);
+
+/* ---------------------------------- */
+
+
+
+
+
+
+
+
+// smooth scroll from lenin
+// this line give errorr
+// import Lenis from 'lenis'  
+const lenis = new Lenis()
+
+lenis.on('scroll', (e) => {
+    // console.log(e)
+})
+
+function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+} 
+
+
+requestAnimationFrame(raf)
