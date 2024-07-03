@@ -259,6 +259,7 @@ html,body{
     border-bottom: 1.5px solid white;
 }
 #page h1{
+    margin-left:10vw;
     font-size: 9vw;
     font-weight: 500;
     color: #111;
@@ -267,6 +268,7 @@ html,body{
 
 }
 #page h3{
+    margin-left:10vw;
     font-size: 7vw;
     font-weight: 300;
     color: #111;
@@ -276,6 +278,7 @@ html,body{
 }
 
 #page h5{
+    margin-left:10vw;
     font-size: 6vw;
     font-weight: 78;
     color: #111;
@@ -287,6 +290,7 @@ html,body{
     /* background-color: red; 
     */
     /* margin-left: 20%; */
+    margin-left:10vw;
     
     position: relative;
     margin-top: 23vw;
