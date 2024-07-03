@@ -212,6 +212,7 @@ const locoScroll = new LocomotiveScroll({
   el: document.querySelector("#main"),
   smooth: true
 });
+
 // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
 locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -246,6 +247,7 @@ main.addEventListener("mousemove",function(dets){
     crsr.style.top = dets.y+"px"
 
 })
+
 // var vdo = document.querySelector("#page video")
 // vdo.addEventListener("mouseenter",function(){
 //     // crsr.style.width = "23px"

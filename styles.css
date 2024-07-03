@@ -209,7 +209,8 @@ html,body{
 
 
 #main{
-    background-color: white;
+    /* background-color: white; */
+    overflow-x: hidden;
 }
 
 #page{
